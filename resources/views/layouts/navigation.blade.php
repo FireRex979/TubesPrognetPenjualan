@@ -48,11 +48,12 @@
                                 href="/second" aria-expanded="false"><i class="me-3 fas fa-sign-out-alt" style="color:cornsilk"
                                     aria-hidden="true"></i><span class="hide-menu" style="color:cornsilk">Log Out</span></a>
                                 </li>
-                        <!-- 
+                        
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="/pages-profile" aria-expanded="false"><i class="me-3 fa fa-user"
                                     aria-hidden="true"></i><span class="hide-menu">Profile</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        <!-- 
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="/table-basic" aria-expanded="false"><i class="me-3 fa fa-table"
                                     aria-hidden="true"></i><span class="hide-menu">Table</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
