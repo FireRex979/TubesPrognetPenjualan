@@ -49,7 +49,7 @@
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6 bg-info">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
+                <div class="navbar-header" data-logobg="skin6"> 
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
@@ -58,7 +58,7 @@
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon1.png" alt="homepage" class="dark-logo" />
+                            <img src="../assets/images/logo-icon-.png" alt="homepage" class="dark-logo" />
                         </b>
                         <!--End Logo icon -->
                     </a>
@@ -74,6 +74,7 @@
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
+                <h4 class="ml-4 dashboard-title" style="color:white"> Website Aplikasi Penjualan </h4>
             </nav>
         </header>
         <!-- ============================================================== -->
@@ -105,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>-->            
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -129,7 +130,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                © 2021 Pemrograman Internet
+                © 2021 Pemrograman Internet - Universitas Udayana
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
