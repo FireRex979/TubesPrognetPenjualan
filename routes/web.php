@@ -24,3 +24,15 @@ Route::get('/welcome', function () {
 Route::get('/first', function () {
     return view('penjualan/first');
 });
+
+Route::get('/table-basic', function () {
+    return view('table-basic');
+});
+
+Route::get('/icon-fontawesome', function () {
+    return view('icon-fontawesome');
+});
+
+Route::get('/pages-profile', function () {
+    return view('pages-profile');
+});
