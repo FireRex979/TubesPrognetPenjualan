@@ -14,6 +14,7 @@
                         <th class="border-top-0">HARGA</th>
                         <th class="border-top-0">KETERANGAN</th>
                         <th class="border-top-0">ACTION</th>
+                        <th class="border-top-0">ACTION</th>
                     </tr>
                 </thead>
             </table>
