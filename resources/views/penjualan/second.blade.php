@@ -16,11 +16,6 @@
                         <th class="border-top-0">ACTION</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-
-                    </tr>
-                </tbody>
             </table>
         </div>
 @endsection
