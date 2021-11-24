@@ -18,12 +18,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="border-top-0">1.</td>
-                        <td class="border-top-0">XXXXXX</td>
-                        <td class="border-top-0">100</td>
-                        <td class="border-top-0">Rp.xxxxxx</td>
-                        <td class="border-top-0">XXXXXX</td>
-                        <td class="border-top-0">ACTION</td>
+
                     </tr>
                 </tbody>
             </table>
