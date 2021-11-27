@@ -17,8 +17,6 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="../assets/plugins/chartist/dist/chartist.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.min.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +47,7 @@
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6 bg-info">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6"> 
+                <div class="navbar-header" data-logobg="skin6">
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
@@ -91,7 +89,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <!-- 
+            <!--
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-8 align-self-center">
@@ -106,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-            </div>-->            
+            </div>-->
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -114,14 +112,7 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                @yield('content')
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -161,7 +152,7 @@
     <script src="../assets/plugins/flot/jquery.flot.js"></script>
     <script src="../assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/pages/dashboards/dashboard1.js') }}"></script>
-    
+
 </body>
 
 </html>

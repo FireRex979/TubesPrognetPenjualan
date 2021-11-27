@@ -9,6 +9,8 @@ class Product extends Model
 {
     use SoftDeletes;
 
+    protected $guards = [];
+
     public function category()
     {
         return $this->belongsTo(CategoryProduct::class, 'category_id', 'id');

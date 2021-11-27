@@ -36,3 +36,8 @@ Route::get('/icon-fontawesome', function () {
 Route::get('/pages-profile', function () {
     return view('pages-profile');
 });
+
+//Penjualan
+Route::group(['prefix' => 'penjualan'], function() {
+    Route::get('/', 'PenjualanController@index')->name('penjualan.index');
+});

@@ -9,6 +9,8 @@ class Supplier extends Model
 {
     use SoftDeletes;
 
+    protected $guards = [];
+
     public function product()
     {
         return $this->hasMany(Product::class, 'supplier_id');
