@@ -5,29 +5,22 @@
 @section('heading', 'Tabel')
 
 @section('content')
-<h4 class="card-title">Contoh Tabel</h4>
-        <div class="table-responsive">
-            <table class="table user-table no-wrap">
-                <thead>
-                    <tr>
-                        <th class="border-top-0">NO</th>
-                        <th class="border-top-0">DATA BARANG</th>
-                        <th class="border-top-0">JUMLAH</th>
-                        <th class="border-top-0">HARGA</th>
-                        <th class="border-top-0">KETERANGAN</th>
-                        <th class="border-top-0">ACTION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border-top-0">1.</td>
-                        <td class="border-top-0">XXXXXX</td>
-                        <td class="border-top-0">100</td>
-                        <td class="border-top-0">Rp.xxxxxx</td>
-                        <td class="border-top-0">XXXXXX</td>
-                        <td class="border-top-0">ACTION</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Illustrations -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
         </div>
+        <div class="card-body">
+            <div class="text-center">
+                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                    src="img/undraw_posting_photo.svg" alt="...">
+            </div>
+            <p>Add some quality, svg illustrations to your project courtesy of <a
+                    target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                constantly updated collection of beautiful svg images that you can use
+                completely free and without attribution!</p>
+            <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                unDraw &rarr;</a>
+        </div>
+    </div>
 @endsection
