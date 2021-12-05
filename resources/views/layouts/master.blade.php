@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="keywords"
         content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Monsterlite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Monster admin lite design, Monster admin lite dashboard bootstrap 5 dashboard template">
     <meta name="description"
@@ -15,7 +16,7 @@
     <title>@yield('title')</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png')}}">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.min.css') }}">
@@ -137,9 +138,9 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('assets/plugins/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="../assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app-style-switcher.js') }}"></script>
     <!--Wave Effects -->
     <script type="text/javascript" src="{{ asset('js/waves.js') }}"></script>
@@ -148,11 +149,8 @@
     <!--Custom JavaScript -->
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <!--This page JavaScript -->
-    <!--flot chart-->
-    <script src="../assets/plugins/flot/jquery.flot.js"></script>
-    <script src="../assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/pages/dashboards/dashboard1.js') }}"></script>
-
+    @yield('js')
 </body>
 
 </html>

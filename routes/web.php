@@ -40,4 +40,5 @@ Route::get('/pages-profile', function () {
 //Penjualan
 Route::group(['prefix' => 'penjualan'], function() {
     Route::get('/', 'PenjualanController@index')->name('penjualan.index');
+    Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
 });
