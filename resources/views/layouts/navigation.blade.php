@@ -1,72 +1,114 @@
-<!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/first" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
-                                    aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fa fa-user"
-                                    aria-hidden="true"></i><span class="hide-menu">Profile</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-calendar"
-                                    aria-hidden="true"></i><span class="hide-menu">Satuan</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-address-book"
-                                    aria-hidden="true"></i><span class="hide-menu">Suplier</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-boxes"
-                                    aria-hidden="true"></i><span class="hide-menu">Kategori Produk</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-box-open"
-                                    aria-hidden="true"></i><span class="hide-menu">Produk</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="{{ route('penjualan.index') }}" aria-expanded="false"><i class="me-3 fas fa-balance-scale"
-                                    aria-hidden="true"></i><span class="hide-menu">Penjualan</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-chart-line"
-                                    aria-hidden="true"></i><span class="hide-menu">Laporan Gr. Untung Rugi</span></a>
-                                </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-calendar-alt"
-                                    aria-hidden="true"></i><span class="hide-menu">Laporan Lainnya</span></a>
-                                </li>
-                        <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link bg-info"
-                                href="/second" aria-expanded="false"><i class="me-3 fas fa-sign-out-alt" style="color:cornsilk"
-                                    aria-hidden="true"></i><span class="hide-menu" style="color:cornsilk">Log Out</span></a>
-                                </li>
+<div id="wrapper">
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/pages-profile" aria-expanded="false"><i class="me-3 fa fa-user"
-                                    aria-hidden="true"></i><span class="hide-menu">Profile</span></a></li>
-                        <!--
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/table-basic" aria-expanded="false"><i class="me-3 fa fa-table"
-                                    aria-hidden="true"></i><span class="hide-menu">Table</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/icon-fontawesome" aria-expanded="false"><i class="me-3 fa fa-font"
-                                    aria-hidden="true"></i><span class="hide-menu">Icon</span></a></li>
-                                    -->
-                    </ul>
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Aplikasi Penjualan <sup>03</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('penjualan.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Laporan Penjualan</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Laporan:</h6>
+                        <a class="collapse-item" href="#">Grafik Untung Rugi</a>
+                        <a class="collapse-item" href="#">Nilai Asset</a>
+                        <a class="collapse-item" href="#">Jumlah Produk</a>
+                        <a class="collapse-item" href="#">Pendapatan Kotor/Bersih</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Transaksi</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Transaksi:</h6>
+                        <a class="collapse-item" href="#">List Produk</a>
+                        <a class="collapse-item" href="#">Buat Penjualan</a>
+                    </div>
+                </div>
+            </li>
+
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('produk-list') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Manajemen Produk</span></a>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Master Data</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Master Data:</h6>
+                        <a class="collapse-item" href="#">Satuan</a>
+                        <a class="collapse-item" href="#">Supplier</a>
+                        <a class="collapse-item" href="#">Kategori Produk</a>
+                    </div>
+                </div>
+            </li>
+
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>User Management</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Log Out</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+</div>
