@@ -17,6 +17,7 @@ class PenjualanController extends Controller
             ->orderby('category_name', 'asc')
             ->get();
         $product = Product::query()
+            ->where('stok', '>', 0)
             ->orderby('kode', 'asc')
             ->get();
         return view('pages.penjualan.index', compact('category', 'product'));
@@ -44,6 +45,9 @@ class PenjualanController extends Controller
 
         for($i=0; $i < count($request->id_product); $i++) {
             $product = Product::find($request->id_product[$i]);
+            $product->stok = $product->stok - $request->qty_product[$i];
+            $product->save();
+
             $penjualan_detail = new PenjualanDetail();
             $penjualan_detail->transaksi_id = $penjualan->id;
             $penjualan_detail->produk_id = $product->id;
@@ -53,6 +57,6 @@ class PenjualanController extends Controller
             $penjualan_detail->save();
         }
 
-        return response()->json([true]);
+        return response()->json(['success' => true, 'data_penjualan' => $penjualan->penjualan_detail]);
     }
 }
