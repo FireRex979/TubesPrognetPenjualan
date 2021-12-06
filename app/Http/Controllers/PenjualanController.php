@@ -32,6 +32,12 @@ class PenjualanController extends Controller
         $produk = Product::paginate(10);
         return view('produk.list', compact('produk'));
     }
+
+    public function produk_block(){
+
+        $produk = Product::paginate(1);
+        return view('produk.block', compact('produk'));
+    }
     
     public function produk_tambah(){
         

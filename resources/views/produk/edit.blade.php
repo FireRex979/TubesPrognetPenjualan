@@ -46,9 +46,9 @@
                             <label class="col-md-12 mb-0">Supplier</label>
                             <div class="col-md-12">
                                 <select name="supplier" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($supplier as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        name="supplier">{{ $item->nama_supplier }}</option>
+                                    @foreach($supplier ?? '' as $item)
+                                    <option selected="{{ $item->supplier->supplier }}" value="{{ $item->id }}" class="form-check-input" id=""
+                                        name="supplier">{{ $supplier->nama_supplier }}</option>
                                     @endforeach
                                 </select>
                             </div>

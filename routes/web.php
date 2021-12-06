@@ -30,10 +30,13 @@ Route::group(['prefix' => 'penjualan'], function() {
 
     /* ---- PRODUK ---- */
     Route::get('/produk-list',[PenjualanController::class,'produk_list'])->name('produk-list');
+    Route::get('/produk-block',[PenjualanController::class,'produk_block'])->name('produk-block');
+    
     Route::get('/produk-tambah',[PenjualanController::class,'produk_tambah'])->name('produk-tambah');
     Route::post('/produk-savetambah',[PenjualanController::class,'produk_savetambah'])->name('produk-savetambah');
-    Route::get('/produk-edit',[PenjualanController::class,'produk_edit'])->name('produk-edit');
+    Route::get('/{id}/produk-edit',[PenjualanController::class,'produk_edit'])->name('produk-edit');
     Route::post('/produk-saveedit',[PenjualanController::class,'produk_saveedit'])->name('produk-saveedit');
-    Route::get('/produk-delete',[PenjualanController::class,'produk_delete'])->name('produk-delete');
+    Route::get('/{id}/produk-delete',[PenjualanController::class,'produk_delete'])->name('produk-delete');
+
     
 });

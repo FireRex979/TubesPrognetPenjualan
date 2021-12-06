@@ -16,8 +16,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+                <h6 class="m-0 font-weight-bold text-primary d-flex">List Produk</h6>
+                    <div class="btn-group">
+                        <a href="{{ route('produk-block') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mr-2"><i
+                            class="fas fa-square fa-sm text-white-50"></i>  Block Items</a>
+                        <a href="{{ route('produk-list') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-list fa-sm text-white-50"></i>  List Items</a>
+                    </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -54,14 +60,24 @@
                             @foreach($produk as $item)                    
                             <tr>
                                 <th scope="row">{{ $loop->index + 1}}</th>
-                                <td>{{ $item->supplier_id }}</td>
+                                <td>{{ $item->supplier->nama_supplier }}</td>
                                 <td>{{ $item->kode }}</td>
-                                <td>{{ $item->category_id }}</td>
+                                <td>{{ $item->category->category_name }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->stok }}</td>
-                                <td>{{ $item->satuan_id }}</td>
+                                <td>{{ $item->satuan->satuan }}</td>
                                 <td>{{ $item->harga_beli }}</td>
                                 <td>{{ $item->harga_jual }}</td>
+                                <td>
+                                    <form action="{{ route('produk-delete', $item->id) }}" method="POST">
+                                        <div class="" role="group" aria-label="Basic example">
+                                        @csrf
+                                        <a type="button" class="btn btn-success" href="{{ route('produk-edit', $item->id) }}">Edit</a>
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('apakah kamu yakin menghapus data ini ?')">Delete</button>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
