@@ -32,7 +32,12 @@ Route::group(['prefix' => 'product'], function() {
     Route::post('/produk-savetambah', 'ProductController@produk_savetambah')->name('produk-savetambah');
     Route::get('/{id}/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
     Route::post('/{id}/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
-    Route::get('/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
+    Route::post('/{id}/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
+    
+    Route::get('/produk-sampah', 'ProductController@produk_sampah')->name('produk-sampah');
+    Route::get('/{id}/produk-restore', 'ProductController@produk_restore')->name('produk-restore');
+    Route::post('/{id}/produk-forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
+    
 });
 
 //Penjualan

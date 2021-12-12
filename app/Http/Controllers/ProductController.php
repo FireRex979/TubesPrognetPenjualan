@@ -8,6 +8,7 @@ use App\Models\Satuan;
 use App\Models\Supplier;
 use App\Models\Product;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -48,18 +49,8 @@ class ProductController extends Controller
             'foto' => 'required',
         ]);
 
-        if ($request->file('foto')) {
-            $gambar = $request->file('foto');
-            $destinationPath = 'img';
-            $filename = $destinationPath."/".$gambar->getClientOriginalName();
-            $gambar->move($destinationPath, $filename);
-            $urlgambar = $filename;
-        }
-        else{
-            $gambar = $request->file('foto');
-            dd($gambar);
-            $urlgambar = $request->file('foto')->storeAs("foto", "{$gambar->extension()}");
-        }
+        $gambar = $request->file('foto');
+        $urlgambar = $request->file('foto')->storeAs("foto", "{$gambar->extension()}");
 
         Product::create([
             'satuan_id' => $request->satuan,
@@ -107,7 +98,22 @@ class ProductController extends Controller
         $produk->satuan_id = $request->satuan;
         $produk->supplier_id = $request->supplier;
         $produk->category_id = $request->kategori;
-        
+        $path = $produk->foto;
+
+        $gambar = $request->foto;
+        dd($gambar);
+
+        if ($request->hasfile('foto')) {
+            unlink($path);
+            $gambar = $request->file('foto');
+            dd($gambar);
+            $destinationPath = 'foto';
+            $filename = $destinationPath."/".$gambar->getClientOriginalName();
+            $gambar->move($destinationPath, $filename);
+            $urlgambar = $filename;
+        }
+
+        $produk->foto = $urlgambar;
         $produk->kode = $request->kode;
         $produk->nama_barang = $request->nama;
         $produk->stok = $request->stok;
@@ -117,7 +123,27 @@ class ProductController extends Controller
         return redirect()->route('produk-list');
     }
 
-    public function produk_delete(){
-        return view('penjualan.delete');
+    public function produk_delete($id){
+
+        Product::find($id)->delete();
+        return redirect()->route('produk-list');
+    }
+
+    public function produk_sampah(){
+
+        $produk = Product::onlyTrashed()->get();
+        return view('produk.sampah', compact('produk'));
+    }
+
+    public function produk_restore($id){
+
+        Product::withTrashed()->find($id)->restore();
+        return Redirect::back();
+    }
+
+    public function produk_forcedelete($id){
+
+        Product::withTrashed()->find($id)->forceDelete();
+        return Redirect::back();
     }
 }
