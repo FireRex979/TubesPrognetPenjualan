@@ -27,10 +27,11 @@ Route::group(['prefix' => 'product'], function() {
 
     /* ---- PRODUK ---- */
     Route::get('/produk-list', 'ProductController@produk_list')->name('produk-list');
+    Route::get('/produk-block', 'ProductController@produk_block')->name('produk-block');
     Route::get('/produk-tambah', 'ProductController@produk_tambah')->name('produk-tambah');
     Route::post('/produk-savetambah', 'ProductController@produk_savetambah')->name('produk-savetambah');
-    Route::get('/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
-    Route::post('/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
+    Route::get('/{id}/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
+    Route::post('/{id}/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
     Route::get('/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
 });
 

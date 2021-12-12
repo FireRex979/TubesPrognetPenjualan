@@ -21,6 +21,12 @@ class ProductController extends Controller
         return view('produk.list', compact('produk'));
     }
 
+    public function produk_block(){
+
+        $produk = Product::paginate(10);
+        return view('produk.block', compact('produk'));
+    }
+
     public function produk_tambah(){
 
         $supplier = Supplier::all();
@@ -44,13 +50,15 @@ class ProductController extends Controller
 
         if ($request->file('foto')) {
             $gambar = $request->file('foto');
-            $destinationPath = 'img/';
+            $destinationPath = 'img';
             $filename = $destinationPath."/".$gambar->getClientOriginalName();
             $gambar->move($destinationPath, $filename);
             $urlgambar = $filename;
         }
         else{
-            $urlgambar = $request->foto;
+            $gambar = $request->file('foto');
+            dd($gambar);
+            $urlgambar = $request->file('foto')->storeAs("foto", "{$gambar->extension()}");
         }
 
         Product::create([
@@ -68,12 +76,45 @@ class ProductController extends Controller
         return redirect()->route('produk-list');
     }
 
-    public function produk_edit(){
-        return view('produk.edit');
+    public function produk_edit_contoh($id){
+        $produk = Product::find($id);
+        $supplier = Supplier::where('id', '=', $produk->supplier_id)->first();
+        $kategori = CategoryProduct::where('id', '=', $produk->category_id)->first();
+        $satuan = Satuan::where('id', '=', $produk->satuan_id)->first();
+        
+        return view('produk.edit', compact('produk', 'supplier', 'kategori', 'satuan'));
     }
 
-    public function produk_saveedit(){
-        return view('penjualan.saveedit');
+    public function produk_edit($id){
+        $produk = Product::find($id);
+        
+        $supplier_selected = Supplier::where('id', '=', $produk->supplier_id)->first();
+        $supplier = Supplier::all();
+
+        $kategori = CategoryProduct::all();
+        $kategori_selected = CategoryProduct::where('id', '=', $produk->category_id)->first();
+
+        $satuan = Satuan::all();
+        $satuan_selected = Satuan::where('id', '=', $produk->satuan_id)->first();
+
+        return view('produk.edit', compact('produk', 'supplier', 'supplier_selected', 'kategori', 'kategori_selected', 'satuan', 'satuan_selected'));
+    }
+
+    public function produk_saveedit(Request $request, $id){
+
+        $produk = Product::find($id);
+
+        $produk->satuan_id = $request->satuan;
+        $produk->supplier_id = $request->supplier;
+        $produk->category_id = $request->kategori;
+        
+        $produk->kode = $request->kode;
+        $produk->nama_barang = $request->nama;
+        $produk->stok = $request->stok;
+        $produk->harga_jual = $request->jual;
+        $produk->save();
+
+        return redirect()->route('produk-list');
     }
 
     public function produk_delete(){

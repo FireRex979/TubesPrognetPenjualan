@@ -1,6 +1,6 @@
 @extends('layouts/master')
 
-@section('title', 'Tambah Produk')
+@section('title', 'Block Produk')
 
 @section('heading')
     
@@ -21,7 +21,7 @@
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="{{ $item->foto }}" class="square" width="300"/>
+                <center class="mt-2"> <img src="{{ asset($item->foto) }}" class="square" width="300">
                 </center>
             </div>
             <div class="d-flex justify-content-center">
@@ -35,7 +35,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
                 <h6 class="m-0 font-weight-bold text-primary">Detail Produk</h6>
-                <a href="{{ route('produk-edit') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                <a href="{{ route('produk-edit', $item->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                     class=" fas fa-edit fa-sm text-white-50"></i>  Edit Items</a>
             </div>
             <div class="card-body">

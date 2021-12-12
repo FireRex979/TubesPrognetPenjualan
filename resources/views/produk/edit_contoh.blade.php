@@ -9,21 +9,21 @@
 @section('content')
 
 <!-- Page Heading -->
-<form action="{{ route('produk-saveedit', $produk->id) }}" method="POST">
+<form action="{{ route('produk-savetambah') }}" method="POST">
 @csrf
-<h1 class="h3 mb-2 text-gray-800">Edit Produk</h1>
+<h1 class="h3 mb-2 text-gray-800">Tambah Produk</h1>
 <div class="row">
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="/{{ $produk->foto }}" class="square" width="300">
+                <center class="mt-2"> <img src="../img/1234.jpg" class="square" width="300" />
                     <div class="btn btn-light btn-icon-split mt-3">
                         <span class="icon text-gray-600">
                             <i class="fas fa-arrow-right">
                                 <input id="foto" name="foto" type="file" class="form-control">
                             </i>
                         </span>
-                        <span class="text">Update Foto</span>
+                        <span class="text">Update Gambar</span>
                     </div>
                     @error('foto')
                         <div class="alert alert-danger" role="alert">
@@ -45,15 +45,9 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Supplier</label>
                             <div class="col-md-12">
-                                <select name="supplier" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($supplier as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        @if($item->id == $supplier_selected->id)
-                                            {{'selected="selected"'}}
-                                        @endif>
-                                        {{ $item->nama_supplier }}
-                                    </option>
-                                    @endforeach
+                                <select name="supplier" class="form-select shadow-none border-0 ps-0">                                    
+                                    <option value="{{ $supplier->id }}" class="form-check-input" id=""
+                                        name="supplier">{{ $supplier->nama_supplier }}</option>
                                 </select>
                             </div>
                             @error('supplier')
@@ -79,13 +73,8 @@
                             <label class="col-md-12 mb-0">Kategori</label>
                             <div class="col-md-12">
                                 <select name="kategori" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($kategori as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                    @if($item->id == $kategori_selected->id)
-                                        {{'selected="selected"'}}
-                                    @endif>
-                                        {{ $item->category_name }}</option>
-                                    @endforeach
+                                    <option value="{{ $kategori->id }}" class="form-check-input" id=""
+                                        >{{ $kategori->category_name }}</option>
                                 </select>
                             </div>
                             @error('category_name')
@@ -97,7 +86,7 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Nama Barang</label>
                             <div class="col-md-12">
-                                <input type="text" value="{{ $produk->nama_barang }}" placeholder="Minyak eceran"
+                                <input type="text" value="{{ $produk->nama_barang }}" placeholder=""
                                     class="form-control ps-0 form-control-line" name="nama" 
                                     id="nama">
                             </div>
@@ -124,15 +113,8 @@
                             <label class="col-md-12 mb-0">Satuan</label>
                             <div class="col-md-12">
                                 <select name="satuan" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($satuan as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        name="satuan"
-                                        @if($item->id == $satuan_selected->id)
-                                            {{ 'selected="selected"'}}
-                                        @endif>
-                                            {{ $item->satuan }}
-                                    </option>
-                                    @endforeach
+                                    <option value="{{ $satuan->id }}" class="form-check-input" id="satuan"
+                                        name="satuan">{{ $satuan->satuan }}</option>
                                 </select>
                             </div>
                             @error('satuan')
@@ -159,7 +141,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Simpan
-                                    Perubahan</button>
+                                    Penambahan</button>
                                 <a href="{{ route('produk-list') }}" class="btn btn-info mx-auto mx-md-0 text-white">Kembali</a>
                             </div>
                         </div>

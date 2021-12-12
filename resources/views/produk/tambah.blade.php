@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Page Heading -->
-<form action="{{ route('produk-savetambah') }}" method="POST">
+<form action="{{ route('produk-savetambah') }}" method="POST" enctype="multipart/form-data">
 @csrf
 <h1 class="h3 mb-2 text-gray-800">Tambah Produk</h1>
 <div class="row">

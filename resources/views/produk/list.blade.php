@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">Suplier</th>
+                                <th class="border-top-0">Supplier</th>
                                 <th class="border-top-0">Kode Barang</th>
                                 <th class="border-top-0">Kategori</th>
                                 <th class="border-top-0">Nama Barang</th>
@@ -45,7 +45,7 @@
                         <tfoot>
                             <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">Suplier</th>
+                                <th class="border-top-0">Supplier</th>
                                 <th class="border-top-0">Kode Barang</th>
                                 <th class="border-top-0">Kategori</th>
                                 <th class="border-top-0">Nama Barang</th>
