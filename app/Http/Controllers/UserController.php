@@ -17,40 +17,38 @@ class UserController extends Controller
     public function add(){
         return view('user.add');
     }
-    
+
     public function addSave(Request $request){
-        $pass = Hash::make($request->password);
         // dd($test);
         User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$pass
+            'password'=> Hash::make($request->password)
         ]);
         return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan User');
     }
 
     public function edit($id){
-        $content = User::where('id','=',$id)->get()->first();
+        $content = User::where('id','=',$id)->first();
 
         return view('user.edit', compact('content'));
     }
 
     public function editSave(Request $request, $id){
-        $temp= User::where('id','=',$id)->get()->first();
-        $pass = Hash::make($request->password);
+        $temp= User::where('id','=',$id)->first();
 
         $temp->update([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$pass
+            'password'=>Hash::make($request->password)
         ]);
         return redirect()->route('user.index')->with('success', 'Berhasil Mengubah Master Data Satuan');
-        
+
     }
 
     public function delete($id){
         $data = User::find($id);
-        
+
 
         // // dd($data);
         $data->delete();
