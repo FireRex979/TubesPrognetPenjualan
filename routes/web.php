@@ -90,6 +90,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
     });
 
-
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
