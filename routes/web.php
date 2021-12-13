@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SatuanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,6 +90,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
     });
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
