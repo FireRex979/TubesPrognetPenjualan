@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\SatuanController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -10,6 +10,7 @@ class Satuan extends Model
     use SoftDeletes;
 
     protected $guards = [];
+    protected $fillable = ['id','satuan', 'singkatan'];
 
     public function product()
     {
