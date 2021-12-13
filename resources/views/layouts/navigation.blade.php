@@ -47,7 +47,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master Data:</h6>
-                        <a class="collapse-item" href="#">Satuan</a>
+                        <a class="collapse-item" href="{{ route('satuan.index') }}">Satuan</a>
                         <a class="collapse-item" href="#">Supplier</a>
                         <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori Produk</a>
                     </div>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>User Management</span></a>
             </li>
