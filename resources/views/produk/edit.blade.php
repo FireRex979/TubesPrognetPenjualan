@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Page Heading -->
-<form action="{{ route('produk-saveedit', $produk->id) }}" method="POST">
+<form action="{{ route('produk-saveedit', $produk->id) }}" method="POST" enctype="multipart/form-data">
 @csrf
 <h1 class="h3 mb-2 text-gray-800">Edit Produk</h1>
 <div class="row">

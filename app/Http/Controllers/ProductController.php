@@ -48,9 +48,14 @@ class ProductController extends Controller
             'jual' => 'required',
             'foto' => 'required',
         ]);
-
-        $gambar = $request->file('foto');
-        $urlgambar = $request->file('foto')->storeAs("foto", "{$gambar->extension()}");
+    
+        if($request->file('foto')){
+            $gambar = $request->file('foto');
+            $destinationPath = 'foto';
+            $filename = $destinationPath."/".$gambar->getClientOriginalName();
+            $gambar->move($destinationPath, $filename);
+            $urlgambar = $filename;
+        }
 
         Product::create([
             'satuan_id' => $request->satuan,
@@ -62,7 +67,6 @@ class ProductController extends Controller
             'stok' => $request->stok,
             'harga_jual' => $request->jual,
         ]);
-
 
         return redirect()->route('produk-list');
     }
@@ -98,22 +102,17 @@ class ProductController extends Controller
         $produk->satuan_id = $request->satuan;
         $produk->supplier_id = $request->supplier;
         $produk->category_id = $request->kategori;
+        
         $path = $produk->foto;
-
-        $gambar = $request->foto;
-        dd($gambar);
-
-        if ($request->hasfile('foto')) {
-            unlink($path);
+        if ($request->hasFile('foto')) {
             $gambar = $request->file('foto');
-            dd($gambar);
             $destinationPath = 'foto';
             $filename = $destinationPath."/".$gambar->getClientOriginalName();
             $gambar->move($destinationPath, $filename);
-            $urlgambar = $filename;
+            $path = $filename;
         }
-
-        $produk->foto = $urlgambar;
+    
+        $produk->foto = $path;        
         $produk->kode = $request->kode;
         $produk->nama_barang = $request->nama;
         $produk->stok = $request->stok;
