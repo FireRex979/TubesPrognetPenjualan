@@ -7,8 +7,6 @@
 @endsection
 
 @section('content')
-<a href="{{ route('produk-tambah') }}" class="d-none d-sm-inline-block btn btn-m btn-info shadow-sm mb-3" style="float: right;"><i
-        class="fa-sm"></i>+ Tambah Produk</a>
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
@@ -64,12 +62,12 @@
                                 <td>{{ $item->harga_beli }}</td>
                                 <td>{{ $item->harga_jual }}</td>
                                 <td>
-                                    <form action="{{ route('produk-delete', $item->id) }}" method="POST">
+                                    <form action="{{ route('produk-forcedelete', $item->id) }}" method="POST">
                                         <div class="" role="group" aria-label="Basic example">
                                         @csrf
-                                        <a type="button" class="btn btn-success" href="{{ route('produk-edit', $item->id) }}">Edit</a>
+                                        <a type="button" class="btn btn-success" href="{{ route('produk-restore', $item->id) }}">Restore</a>
                                         <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('apakah kamu yakin menghapus data ini ?')">Hapus</button>
+                                            onclick="return confirm('apakah kamu yakin menghapus data ini ?')">Force Delete</button>
                                         </div>
                                     </form>
                                 </td>

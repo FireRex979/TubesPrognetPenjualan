@@ -27,11 +27,17 @@ Route::group(['prefix' => 'product'], function() {
 
     /* ---- PRODUK ---- */
     Route::get('/produk-list', 'ProductController@produk_list')->name('produk-list');
+    Route::get('/produk-block', 'ProductController@produk_block')->name('produk-block');
     Route::get('/produk-tambah', 'ProductController@produk_tambah')->name('produk-tambah');
     Route::post('/produk-savetambah', 'ProductController@produk_savetambah')->name('produk-savetambah');
-    Route::get('/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
-    Route::post('/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
-    Route::get('/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
+    Route::get('/{id}/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
+    Route::post('/{id}/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
+    Route::post('/{id}/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
+    
+    Route::get('/produk-sampah', 'ProductController@produk_sampah')->name('produk-sampah');
+    Route::get('/{id}/produk-restore', 'ProductController@produk_restore')->name('produk-restore');
+    Route::post('/{id}/produk-forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
+    
 });
 
 //Penjualan

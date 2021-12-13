@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Page Heading -->
-<form action="{{ route('produk-savetambah') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('produk-savetambah') }}" method="POST">
 @csrf
 <h1 class="h3 mb-2 text-gray-800">Tambah Produk</h1>
 <div class="row">
@@ -45,11 +45,9 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Supplier</label>
                             <div class="col-md-12">
-                                <select name="supplier" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($supplier as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        name="supplier">{{ $item->nama_supplier }}</option>
-                                    @endforeach
+                                <select name="supplier" class="form-select shadow-none border-0 ps-0">                                    
+                                    <option value="{{ $supplier->id }}" class="form-check-input" id=""
+                                        name="supplier">{{ $supplier->nama_supplier }}</option>
                                 </select>
                             </div>
                             @error('supplier')
@@ -61,7 +59,7 @@
                         <div class="form-group">
                             <label for="example-email" class="col-md-12">Kode Barang</label>
                             <div class="col-md-12">
-                                <input type="text" placeholder="00122" value=""
+                                <input type="text" placeholder="" value="{{ $produk->kode }}"
                                     class="form-control ps-0 form-control-line" name="kode"
                                     id="kode">
                             </div>
@@ -75,10 +73,8 @@
                             <label class="col-md-12 mb-0">Kategori</label>
                             <div class="col-md-12">
                                 <select name="kategori" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($kategori as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        >{{ $item->category_name }}</option>
-                                    @endforeach
+                                    <option value="{{ $kategori->id }}" class="form-check-input" id=""
+                                        >{{ $kategori->category_name }}</option>
                                 </select>
                             </div>
                             @error('category_name')
@@ -90,7 +86,7 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Nama Barang</label>
                             <div class="col-md-12">
-                                <input type="text" value="" placeholder="Minyak eceran"
+                                <input type="text" value="{{ $produk->nama_barang }}" placeholder=""
                                     class="form-control ps-0 form-control-line" name="nama" 
                                     id="nama">
                             </div>
@@ -103,7 +99,7 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Stok</label>
                             <div class="col-md-12">
-                                <input type="number" placeholder="100" value=""
+                                <input type="number" placeholder="" value="{{ $produk->stok }}"
                                     class="form-control ps-0 form-control-line" name="stok" 
                                     id="stok">
                             </div>
@@ -117,10 +113,8 @@
                             <label class="col-md-12 mb-0">Satuan</label>
                             <div class="col-md-12">
                                 <select name="satuan" class="form-select shadow-none border-0 ps-0">
-                                    @foreach($satuan as $item)
-                                    <option value="{{ $item->id }}" class="form-check-input" id=""
-                                        name="satuan">{{ $item->satuan }}</option>
-                                    @endforeach
+                                    <option value="{{ $satuan->id }}" class="form-check-input" id="satuan"
+                                        name="satuan">{{ $satuan->satuan }}</option>
                                 </select>
                             </div>
                             @error('satuan')
@@ -133,7 +127,7 @@
                             <label class="col-md-12 mb-0">Harga Jual</label>
                             <div class="col-md-12 input-group-prepend">
                                 <span class="input-group-text">Rp.</span>
-                                    <input type="text" value="" placeholder="15.000"
+                                    <input type="text" value="{{ $produk->harga_jual }}" placeholder=""
                                         class="form-control" name="jual" 
                                         id="jual">
                                 <span class="input-group-text">,00</span>
