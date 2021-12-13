@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\KategoriProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,11 +34,11 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/{id}/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
     Route::post('/{id}/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
     Route::post('/{id}/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
-    
+
     Route::get('/produk-sampah', 'ProductController@produk_sampah')->name('produk-sampah');
     Route::get('/{id}/produk-restore', 'ProductController@produk_restore')->name('produk-restore');
     Route::post('/{id}/produk-forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
-    
+
 });
 
 //Penjualan
@@ -45,4 +46,14 @@ Route::group(['prefix' => 'penjualan'], function() {
     Route::get('/', 'PenjualanController@index')->name('penjualan.index');
     Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
     Route::get('/','PenjualanController@index')->name('penjualan.index');
+});
+
+//Kategori
+Route::group(['prefix' => 'kategori'], function() {
+    Route::get('/', [KategoriProdukController::class, 'index'])->name('kategori.index');
+    Route::get('/add', [KategoriProdukController::class, 'add'])->name('kategori.add');
+    Route::post('/add', [KategoriProdukController::class, 'addSave'])->name('kategori.add.save');
+    Route::get('/edit/{id}', [KategoriProdukController::class, 'edit'])->name('kategori.edit');
+    Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
+    Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
 });

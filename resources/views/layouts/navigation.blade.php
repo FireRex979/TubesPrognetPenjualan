@@ -59,7 +59,7 @@
                 </div>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -82,12 +82,12 @@
                         <h6 class="collapse-header">Master Data:</h6>
                         <a class="collapse-item" href="#">Satuan</a>
                         <a class="collapse-item" href="#">Supplier</a>
-                        <a class="collapse-item" href="#">Kategori Produk</a>
+                        <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori Produk</a>
                     </div>
                 </div>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
