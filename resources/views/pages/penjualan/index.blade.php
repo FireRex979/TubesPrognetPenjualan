@@ -10,7 +10,7 @@
                 <div class="col-md-4 col-12 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <img src="/foto/{{ $item->foto }}" style="border-radius: 10px;" width="100%" alt="">
+                            <img src="{{ $item->foto }}" style="border-radius: 10px;" width="100%" alt="">
                             <hr>
                             <div id="product-{{ $item->id }}" class="d-flex justify-content-between align-items-center container-product-{{ $item->id }}">
                                 <div class="right-content">

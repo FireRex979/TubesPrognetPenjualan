@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{id}/produk-restore', 'ProductController@produk_restore')->name('produk-restore');
         Route::post('/{id}/produk-forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
 
+        Route::get('/produk-restoreall', 'ProductController@produk_restoreall')->name('produk-restoreall');
+        Route::post('/produk-forcedeleteall', 'ProductController@produk_forcedeleteall')->name('produk-forcedeleteall');
+
     });
 
     //Penjualan

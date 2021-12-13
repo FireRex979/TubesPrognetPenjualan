@@ -24,7 +24,7 @@ class ProductController extends Controller
 
     public function produk_block(){
 
-        $produk = Product::paginate(10);
+        $produk = Product::paginate(1);
         return view('produk.block', compact('produk'));
     }
 
@@ -45,6 +45,7 @@ class ProductController extends Controller
             'kode' => 'required',
             'nama' => 'required',
             'stok' => 'required',
+            'beli' => 'required',
             'jual' => 'required',
             'foto' => 'required',
         ]);
@@ -65,6 +66,7 @@ class ProductController extends Controller
             'kode' => $request->kode,
             'nama_barang' => $request->nama,
             'stok' => $request->stok,
+            'harga_beli' => $request->beli,
             'harga_jual' => $request->jual,
         ]);
 
@@ -116,6 +118,7 @@ class ProductController extends Controller
         $produk->kode = $request->kode;
         $produk->nama_barang = $request->nama;
         $produk->stok = $request->stok;
+        $produk->harga_beli = $request->beli;
         $produk->harga_jual = $request->jual;
         $produk->save();
 
@@ -143,6 +146,18 @@ class ProductController extends Controller
     public function produk_forcedelete($id){
 
         Product::withTrashed()->find($id)->forceDelete();
+        return Redirect::back();
+    }
+
+    public function produk_restoreall(){
+
+        Product::withTrashed()->restore();
+        return Redirect::back();
+    }
+
+    public function produk_forcedeleteall(){
+
+        Product::withTrashed()->forceDelete();
         return Redirect::back();
     }
 }

@@ -20,7 +20,7 @@
                 </center>
             </div>
             <div class="d-flex justify-content-center">
-                {!! $produk->links() !!}
+                {{ $produk->onEachSide(1)->links() }}
             </div>
         </div>
     </div>
@@ -78,6 +78,12 @@
                                     <option selected value="{{ $item->id }}" class="form-check-input" id=""
                                         name="supplier">{{ $item->satuan->satuan }}</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="col-md-12 mb-0">Harga Beli</label>
+                            <div class="col-md-12 input-group-prepend">
+                                {{ $item->harga_beli }}
                             </div>
                         </div>
                         <div class="input-group mb-3">
