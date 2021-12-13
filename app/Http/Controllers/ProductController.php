@@ -24,7 +24,7 @@ class ProductController extends Controller
 
     public function produk_block(){
 
-        $produk = Product::paginate(10);
+        $produk = Product::paginate(1);
         return view('produk.block', compact('produk'));
     }
 
@@ -45,24 +45,30 @@ class ProductController extends Controller
             'kode' => 'required',
             'nama' => 'required',
             'stok' => 'required',
+            'beli' => 'required',
             'jual' => 'required',
             'foto' => 'required',
         ]);
-
-        $gambar = $request->file('foto');
-        $urlgambar = $request->file('foto')->storeAs("foto", "{$gambar->extension()}");
+    
+        if($request->file('foto')){
+            $gambar = $request->file('foto');
+            $destinationPath = 'foto';
+            $filename = $destinationPath."/".$gambar->getClientOriginalName();
+            $gambar->move($destinationPath, $filename);
+            $urlgambar = $filename;
+        }
 
         Product::create([
             'satuan_id' => $request->satuan,
             'supplier_id' => $request->supplier,
-            'category_id' => $request->kode,
+            'category_id' => $request->kategori,
             'foto' => $urlgambar,
             'kode' => $request->kode,
             'nama_barang' => $request->nama,
             'stok' => $request->stok,
+            'harga_beli' => $request->beli,
             'harga_jual' => $request->jual,
         ]);
-
 
         return redirect()->route('produk-list');
     }
@@ -98,25 +104,21 @@ class ProductController extends Controller
         $produk->satuan_id = $request->satuan;
         $produk->supplier_id = $request->supplier;
         $produk->category_id = $request->kategori;
+        
         $path = $produk->foto;
-
-        $gambar = $request->foto;
-        dd($gambar);
-
-        if ($request->hasfile('foto')) {
-            unlink($path);
+        if ($request->hasFile('foto')) {
             $gambar = $request->file('foto');
-            dd($gambar);
             $destinationPath = 'foto';
             $filename = $destinationPath."/".$gambar->getClientOriginalName();
             $gambar->move($destinationPath, $filename);
-            $urlgambar = $filename;
+            $path = $filename;
         }
-
-        $produk->foto = $urlgambar;
+    
+        $produk->foto = $path;        
         $produk->kode = $request->kode;
         $produk->nama_barang = $request->nama;
         $produk->stok = $request->stok;
+        $produk->harga_beli = $request->beli;
         $produk->harga_jual = $request->jual;
         $produk->save();
 
@@ -144,6 +146,18 @@ class ProductController extends Controller
     public function produk_forcedelete($id){
 
         Product::withTrashed()->find($id)->forceDelete();
+        return Redirect::back();
+    }
+
+    public function produk_restoreall(){
+
+        Product::withTrashed()->restore();
+        return Redirect::back();
+    }
+
+    public function produk_forcedeleteall(){
+
+        Product::withTrashed()->forceDelete();
         return Redirect::back();
     }
 }

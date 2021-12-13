@@ -130,6 +130,21 @@
                             @enderror
                         </div>
                         <div class="input-group mb-3">
+                            <label class="col-md-12 mb-0">Harga Beli</label>
+                            <div class="col-md-12 input-group-prepend">
+                                <span class="input-group-text">Rp.</span>
+                                    <input type="text" value="" placeholder="15.000"
+                                        class="form-control" name="beli" 
+                                        id="beli">
+                                <span class="input-group-text">,00</span>
+                            </div>
+                            @error('beli')
+                                <div class="alert alert-danger" role="alert">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3">
                             <label class="col-md-12 mb-0">Harga Jual</label>
                             <div class="col-md-12 input-group-prepend">
                                 <span class="input-group-text">Rp.</span>

@@ -25,36 +25,36 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Supplier</th>
-                                <th class="border-top-0">Kode Barang</th>
-                                <th class="border-top-0">Kategori</th>
-                                <th class="border-top-0">Nama Barang</th>
-                                <th class="border-top-0">Stok</th>
-                                <th class="border-top-0">Satuan</th>
-                                <th class="border-top-0">Harga Beli</th>
-                                <th class="border-top-0">Harga Jual</th>
-                                <th class="border-top-0">Action</th>
+                                <th class="border-top-0" style="text-align: center">No</th>
+                                <th class="border-top-0" style="text-align: center">Supplier</th>
+                                <th class="border-top-0" style="text-align: center">Kode Barang</th>
+                                <th class="border-top-0" style="text-align: center">Kategori</th>
+                                <th class="border-top-0" style="text-align: center">Nama Barang</th>
+                                <th class="border-top-0" style="text-align: center">Stok</th>
+                                <th class="border-top-0" style="text-align: center">Satuan</th>
+                                <th class="border-top-0" style="text-align: center">Harga Beli</th>
+                                <th class="border-top-0" style="text-align: center">Harga Jual</th>
+                                <th class="border-top-0" style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Supplier</th>
-                                <th class="border-top-0">Kode Barang</th>
-                                <th class="border-top-0">Kategori</th>
-                                <th class="border-top-0">Nama Barang</th>
-                                <th class="border-top-0">Stok</th>
-                                <th class="border-top-0">Satuan</th>
-                                <th class="border-top-0">Harga Beli</th>
-                                <th class="border-top-0">Harga Jual</th>
-                                <th class="border-top-0">Action</th>
+                                <th class="border-top-0" style="text-align: center">No</th>
+                                <th class="border-top-0" style="text-align: center">Supplier</th>
+                                <th class="border-top-0" style="text-align: center">Kode Barang</th>
+                                <th class="border-top-0" style="text-align: center">Kategori</th>
+                                <th class="border-top-0" style="text-align: center">Nama Barang</th>
+                                <th class="border-top-0" style="text-align: center">Stok</th>
+                                <th class="border-top-0" style="text-align: center">Satuan</th>
+                                <th class="border-top-0" style="text-align: center">Harga Beli</th>
+                                <th class="border-top-0" style="text-align: center">Harga Jual</th>
+                                <th class="border-top-0" style="text-align: center">Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach($produk as $item)                    
                             <tr>
-                                <th scope="row">{{ $loop->index + 1}}</th>
+                                <th scope="row">{{ $loop->index + 1 + ($produk->currentPage() - 1) * 10}}</th>
                                 <td>{{ $item->supplier->nama_supplier }}</td>
                                 <td>{{ $item->kode }}</td>
                                 <td>{{ $item->category->category_name }}</td>
@@ -63,7 +63,7 @@
                                 <td>{{ $item->satuan->satuan }}</td>
                                 <td>{{ $item->harga_beli }}</td>
                                 <td>{{ $item->harga_jual }}</td>
-                                <td>
+                                <td width="160px">
                                     <form action="{{ route('produk-delete', $item->id) }}" method="POST">
                                         <div class="" role="group" aria-label="Basic example">
                                         @csrf
@@ -79,6 +79,9 @@
                     </table>
                     
                 </div>
+                <div class="d-flex justify-content-center">
+                {!! $produk->links() !!}
+            </div>
             </div>
         </div>
 @endsection

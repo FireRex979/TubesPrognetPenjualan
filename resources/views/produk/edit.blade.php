@@ -3,20 +3,20 @@
 @section('title', 'Tambah Produk')
 
 @section('heading')
-    
+
 @endsection
 
 @section('content')
 
 <!-- Page Heading -->
-<form action="{{ route('produk-saveedit', $produk->id) }}" method="POST">
+<form action="{{ route('produk-saveedit', $produk->id) }}" method="POST" enctype="multipart/form-data">
 @csrf
 <h1 class="h3 mb-2 text-gray-800">Edit Produk</h1>
 <div class="row">
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="/{{ $produk->foto }}" class="square" width="300">
+                <center class="mt-2"> <img src="/foto/{{ $produk->foto }}" class="square" width="300">
                     <div class="btn btn-light btn-icon-split mt-3">
                         <span class="icon text-gray-600">
                             <i class="fas fa-arrow-right">
@@ -98,7 +98,7 @@
                             <label class="col-md-12 mb-0">Nama Barang</label>
                             <div class="col-md-12">
                                 <input type="text" value="{{ $produk->nama_barang }}" placeholder="Minyak eceran"
-                                    class="form-control ps-0 form-control-line" name="nama" 
+                                    class="form-control ps-0 form-control-line" name="nama"
                                     id="nama">
                             </div>
                             @error('nama')
@@ -111,7 +111,7 @@
                             <label class="col-md-12 mb-0">Stok</label>
                             <div class="col-md-12">
                                 <input type="number" placeholder="" value="{{ $produk->stok }}"
-                                    class="form-control ps-0 form-control-line" name="stok" 
+                                    class="form-control ps-0 form-control-line" name="stok"
                                     id="stok">
                             </div>
                             @error('stok')
@@ -146,7 +146,7 @@
                             <div class="col-md-12 input-group-prepend">
                                 <span class="input-group-text">Rp.</span>
                                     <input type="text" value="{{ $produk->harga_jual }}" placeholder=""
-                                        class="form-control" name="jual" 
+                                        class="form-control" name="jual"
                                         id="jual">
                                 <span class="input-group-text">,00</span>
                             </div>

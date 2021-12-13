@@ -1,6 +1,6 @@
 @extends('layouts/master')
 
-@section('title', 'Produk List')
+@section('title', 'Sampah')
 
 @section('heading')
     
@@ -19,34 +19,47 @@
                     @include('layouts/navbar_atas')
             </div>
             <div class="card-body">
+                <div class="card-header py-3 d-sm-flex justify-content-end mb-2">
+                    <form action="{{ route('produk-forcedeleteall') }}" method="POST">
+                        <div class="" role="group" aria-label="Basic example">
+                        @csrf
+                            <a href="{{ route('produk-restoreall') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2"><i
+                            class="fa-sm text-white-50"></i>  Restore All</a>
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                                onclick="return confirm('apakah kamu yakin menghapus data ini ?')">
+                                <i class="fa-sm text-white-50"></i>
+                                    Force Delete All</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Supplier</th>
-                                <th class="border-top-0">Kode Barang</th>
-                                <th class="border-top-0">Kategori</th>
-                                <th class="border-top-0">Nama Barang</th>
-                                <th class="border-top-0">Stok</th>
-                                <th class="border-top-0">Satuan</th>
-                                <th class="border-top-0">Harga Beli</th>
-                                <th class="border-top-0">Harga Jual</th>
-                                <th class="border-top-0">Action</th>
+                                <th class="border-top-0" style="text-align: center">No</th>
+                                <th class="border-top-0" style="text-align: center">Supplier</th>
+                                <th class="border-top-0" style="text-align: center">Kode Barang</th>
+                                <th class="border-top-0" style="text-align: center">Kategori</th>
+                                <th class="border-top-0" style="text-align: center">Nama Barang</th>
+                                <th class="border-top-0" style="text-align: center">Stok</th>
+                                <th class="border-top-0" style="text-align: center">Satuan</th>
+                                <th class="border-top-0" style="text-align: center">Harga Beli</th>
+                                <th class="border-top-0" style="text-align: center">Harga Jual</th>
+                                <th class="border-top-0" style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Supplier</th>
-                                <th class="border-top-0">Kode Barang</th>
-                                <th class="border-top-0">Kategori</th>
-                                <th class="border-top-0">Nama Barang</th>
-                                <th class="border-top-0">Stok</th>
-                                <th class="border-top-0">Satuan</th>
-                                <th class="border-top-0">Harga Beli</th>
-                                <th class="border-top-0">Harga Jual</th>
-                                <th class="border-top-0">Action</th>
+                                <th class="border-top-0" style="text-align: center">No</th>
+                                <th class="border-top-0" style="text-align: center">Supplier</th>
+                                <th class="border-top-0" style="text-align: center">Kode Barang</th>
+                                <th class="border-top-0" style="text-align: center">Kategori</th>
+                                <th class="border-top-0" style="text-align: center">Nama Barang</th>
+                                <th class="border-top-0" style="text-align: center">Stok</th>
+                                <th class="border-top-0" style="text-align: center">Satuan</th>
+                                <th class="border-top-0" style="text-align: center">Harga Beli</th>
+                                <th class="border-top-0" style="text-align: center">Harga Jual</th>
+                                <th class="border-top-0" style="text-align: center">Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -61,7 +74,7 @@
                                 <td>{{ $item->satuan->satuan }}</td>
                                 <td>{{ $item->harga_beli }}</td>
                                 <td>{{ $item->harga_jual }}</td>
-                                <td>
+                                <td width="250px">
                                     <form action="{{ route('produk-forcedelete', $item->id) }}" method="POST">
                                         <div class="" role="group" aria-label="Basic example">
                                         @csrf
