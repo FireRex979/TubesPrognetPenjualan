@@ -56,7 +56,7 @@ class ProductController extends Controller
         Product::create([
             'satuan_id' => $request->satuan,
             'supplier_id' => $request->supplier,
-            'category_id' => $request->kode,
+            'category_id' => $request->kategori,
             'foto' => $urlgambar,
             'kode' => $request->kode,
             'nama_barang' => $request->nama,
