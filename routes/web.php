@@ -94,3 +94,5 @@ Route::group(['middleware' => 'auth'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/get-data-penjualan', 'HomeController@getDataPenjualan')->name('get-data-penjualan');
+Route::get('/get-data-kategori-penjualan', 'HomeController@getDataPenjualanKategori')->name('get-data-kategori-penjualan');
