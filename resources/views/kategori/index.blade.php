@@ -50,7 +50,7 @@
                                         @csrf
                                         <a type="button" class="btn btn-success" href="{{ route('kategori.edit', $item->id) }}">Edit</a>
                                         <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Apakah kamu yakin menghapus data ini?')">Delete</button>
+                                            onclick="return confirm('Apakah anda ingin menghapus data ini?')">Delete</button>
                                         </div>
                                     </form>
                                 </td>
