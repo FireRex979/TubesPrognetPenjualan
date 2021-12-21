@@ -36,7 +36,7 @@ class UserController extends Controller
     }
 
     public function editSave(Request $request, $id){
-        $temp= User::where('id','=',$id)->get()->first();
+        $temp = User::where('id','=',$id)->get()->first();
         $pass = Hash::make($request->password);
 
         $temp->update([
