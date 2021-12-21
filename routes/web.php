@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::post('/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
     });
-});
+
     //Kategori
     Route::group(['prefix' => 'kategori'], function() {
         Route::get('/', [KategoriProdukController::class, 'index'])->name('kategori.index');
@@ -90,7 +90,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
         Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
     });
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/get-data-penjualan', 'HomeController@getDataPenjualan')->name('get-data-penjualan');
+Route::get('/get-data-kategori-penjualan', 'HomeController@getDataPenjualanKategori')->name('get-data-kategori-penjualan');
