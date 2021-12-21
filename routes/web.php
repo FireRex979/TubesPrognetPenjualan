@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PenjualanController;
-use App\Http\Controllers\KategoriProdukController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SatuanController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\KategoriProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +80,7 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::post('/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
     });
-});
+
     //Kategori
     Route::group(['prefix' => 'kategori'], function() {
         Route::get('/', [KategoriProdukController::class, 'index'])->name('kategori.index');
@@ -89,7 +90,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
         Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
     });
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/get-data-penjualan', 'HomeController@getDataPenjualan')->name('get-data-penjualan');
+Route::get('/get-data-kategori-penjualan', 'HomeController@getDataPenjualanKategori')->name('get-data-kategori-penjualan');

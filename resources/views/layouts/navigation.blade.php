@@ -8,15 +8,15 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Aplikasi Penjualan <sup>03</sup></div>
+                <div class="sidebar-brand-text mx-3">Aplikasi Penjualan</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('penjualan.index') }}">
+            <li class="nav-item @if(\Request::segment(1)  == 'home') active @endif"">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -24,44 +24,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Laporan Penjualan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Laporan:</h6>
-                        <a class="collapse-item" href="#">Grafik Untung Rugi</a>
-                        <a class="collapse-item" href="#">Nilai Asset</a>
-                        <a class="collapse-item" href="#">Jumlah Produk</a>
-                        <a class="collapse-item" href="#">Pendapatan Kotor/Bersih</a>
-                    </div>
-                </div>
+            <li class="nav-item @if(\Request::segment(1)  == 'penjualan') active @endif">
+                <a class="nav-link" href="{{ route('penjualan.index') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Buat Penjualan</span></a>
             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Transaksi</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Transaksi:</h6>
-                        <a class="collapse-item" href="#">List Produk</a>
-                        <a class="collapse-item" href="#">Buat Penjualan</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -96,13 +63,6 @@
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>User Management</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Log Out</span></a>
             </li>
 
             <!-- Divider -->
