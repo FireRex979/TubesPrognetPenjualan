@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PenjualanController;
-use App\Http\Controllers\KategoriProdukController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SatuanController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\KategoriProdukController;
 
 /*
 |--------------------------------------------------------------------------
