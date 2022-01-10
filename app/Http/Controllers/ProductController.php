@@ -172,7 +172,7 @@ class ProductController extends Controller
         }
         $produk = $produk->where('stok', '>', 0)
             ->orderby('id', 'asc')
-            ->limit(2)
+            ->limit(6)
             ->get();
         return response()->json([
             'code' => 200,
