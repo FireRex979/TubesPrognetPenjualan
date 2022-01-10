@@ -45,13 +45,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/produk-restoreall', 'ProductController@produk_restoreall')->name('produk-restoreall');
         Route::post('/produk-forcedeleteall', 'ProductController@produk_forcedeleteall')->name('produk-forcedeleteall');
 
+        Route::get('/get-all-data', 'ProductController@getAllData')->name('product.get-all-data');
     });
 
     //Penjualan
     Route::group(['prefix' => 'penjualan'], function() {
         Route::get('/', 'PenjualanController@index')->name('penjualan.index');
         Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
-        Route::get('/','PenjualanController@index')->name('penjualan.index');
+        // Route::get('/','PenjualanController@index')->name('penjualan.index');
     });
 
     //Satuan
