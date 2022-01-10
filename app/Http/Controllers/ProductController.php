@@ -167,8 +167,12 @@ class ProductController extends Controller
         if (isset($request->keyword)) {
             $produk->where('nama_barang', 'LIKE', '%'.$request->keyword.'%');
         }
+        if (isset($request->last_id)) {
+            $produk->where('id', '>', $request->last_id);
+        }
         $produk = $produk->where('stok', '>', 0)
-            ->orderby('nama_barang', 'asc')
+            ->orderby('id', 'asc')
+            ->limit(2)
             ->get();
         return response()->json([
             'code' => 200,

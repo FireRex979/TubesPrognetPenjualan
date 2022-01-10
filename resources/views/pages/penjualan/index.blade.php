@@ -9,7 +9,7 @@
             <input type="text" id="search-produk" class="form-control bg-white border-0 small" placeholder="Search for..."
                 aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-primary" onclick="getDataProduk()" type="button">
+                <button class="btn btn-primary" onclick="searchProduk()" type="button">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
@@ -18,6 +18,10 @@
     <div class="col-md-8 col-12 mb-3">
         <div class="row" id="produk-container">
 
+        </div>
+        <div class="w-100 text-center">
+            <input type="hidden" id="last-id-produk" value="0">
+            <button class="btn btn-primary" onclick="getDataProduk()" type="button">Load More</button>
         </div>
     </div>
     <div class="col-md-4 col-12 mb-3">
@@ -106,18 +110,37 @@
             return string;
         }
 
-        getDataProduk = () => {
+        searchProduk = () => {
             $.ajax({
                 url: '{{ route("product.get-all-data") }}',
                 method: 'GET',
                 data: {
-                    keyword: $('#search-produk').val()
+                    keyword: $('#search-produk').val(),
                 },
                 success: function (response) {
                     $('#produk-container').empty();
                     $(response.data).each(function (i, item) {
                         let template = generateProdukTemplate(item);
                         $('#produk-container').append(template);
+                        $('#last-id-produk').val(item.id);
+                    });
+                }
+            })
+        }
+
+        getDataProduk = () => {
+            $.ajax({
+                url: '{{ route("product.get-all-data") }}',
+                method: 'GET',
+                data: {
+                    keyword: $('#search-produk').val(),
+                    last_id: $('#last-id-produk').val(),
+                },
+                success: function (response) {
+                    $(response.data).each(function (i, item) {
+                        let template = generateProdukTemplate(item);
+                        $('#produk-container').append(template);
+                        $('#last-id-produk').val(item.id);
                     });
                 }
             })
