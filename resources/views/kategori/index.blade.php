@@ -24,44 +24,55 @@
                 <h6 class="m-0 font-weight-bold text-primary d-flex">List Master Data Kategori Produk</h6>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Kategori Produk</th>
-                                <th class="border-top-0">Deskripsi</th>
-                                <th class="border-top-0">Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th class="border-top-0">No</th>
-                                <th class="border-top-0">Kategori Produk</th>
-                                <th class="border-top-0">Deskripsi</th>
-                                <th class="border-top-0">Action</th>
-                        </tfoot>
-                        <tbody>
-                            @foreach($contents as $item)
-                            <tr>
-                                <th scope="row">{{ $loop->index + 1 + ($contents->currentPage() - 1) * 5}}</th>
-                                <td>{{ $item->category_name }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td>
-                                    <form action="{{ route('kategori.delete', $item->id) }}" method="POST">
-                                        <div class="" role="group" aria-label="Basic example">
-                                        @csrf
-                                        <a type="button" class="btn btn-success" href="{{ route('kategori.edit', $item->id) }}">Edit</a>
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Apakah anda ingin menghapus data ini?')">Delete</button>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="col-12 mb-5">
+                    <div class="input-group w-50">
+                        <input type="text" id="search-kategori" class="form-control bg-white border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0">No</th>
+                                    <th class="border-top-0">Kategori Produk</th>
+                                    <th class="border-top-0">Deskripsi</th>
+                                    <th class="border-top-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="border-top-0">No</th>
+                                    <th class="border-top-0">Kategori Produk</th>
+                                    <th class="border-top-0">Deskripsi</th>
+                                    <th class="border-top-0">Action</th>
+                            </tfoot>
+                            <tbody>
+                                @foreach($contents as $item)
+                                <tr>
+                                    <th scope="row">{{ $loop->index + 1 + ($contents->currentPage() - 1) * 5}}</th>
+                                    <td>{{ $item->category_name }}</td>
+                                    <td>{{ $item->description }}</td>
+                                    <td>
+                                        <form action="{{ route('kategori.delete', $item->id) }}" method="POST">
+                                            <div class="" role="group" aria-label="Basic example">
+                                            @csrf
+                                            <a type="button" class="btn btn-success" href="{{ route('kategori.edit', $item->id) }}">Edit</a>
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Apakah anda ingin menghapus data ini?')">Delete</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
 <div class="pagination d-flex justify-content-center">

@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function() {
             Route::get('/edit/{id}', [KategoriProdukController::class, 'edit'])->name('kategori.edit');
             Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
             Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
+            Route::get('/searchdata',[KategoriProdukController::class, 'search'])->name('kategori.search');
         });
 
         Route::group(['prefix' => 'product'], function() {
