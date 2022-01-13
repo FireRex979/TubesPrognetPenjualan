@@ -9,9 +9,20 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
+        // dd(request('search'));
+        // $contents = User::all();
+        // if(request('search')) {
+        //     $contents->where('name', 'like', '%' . request('search') . '%');
+        // }
         $contents = User::all();
 
         return view('user.index', compact('contents'));
+    }
+
+    public function search(Request $request){
+        $keyword = $_GET['search'];
+        $contents = User::where('name', 'like', '%' . request('search') . '%')->get();
+        return view('user.search', compact('contents'));
     }
 
     public function add(){
