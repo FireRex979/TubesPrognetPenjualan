@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CategoryProduct;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\Redirect;
 
 class KategoriProdukController extends Controller
 {
     public function index(){
-        $contents = CategoryProduct::all();
+        $contents = CategoryProduct::paginate(5);
 
         return view('kategori.index', compact('contents'));
     }
@@ -19,7 +21,8 @@ class KategoriProdukController extends Controller
 
     public function addSave(Request $request){
         CategoryProduct::create([
-            'category_name'=>$request->category_name
+            'category_name'=>$request->category_name,
+            'description'=>$request->description,
         ]);
         return redirect()->route('kategori.index')->with('success', 'Berhasil Menambahkan Data Kategori Produk');
     }
@@ -34,7 +37,8 @@ class KategoriProdukController extends Controller
         $temp= CategoryProduct::where('id','=',$id)->get()->first();
 
         $temp->update([
-            'category_name'=>$request->category_name
+            'category_name'=>$request->category_name,
+            'description'=>$request->description,
         ]);
         return redirect()->route('kategori.index')->with('success', 'Berhasil Mengubah Data Kategori Produk');
 

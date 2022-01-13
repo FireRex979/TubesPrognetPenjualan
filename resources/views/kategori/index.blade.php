@@ -30,6 +30,7 @@
                             <tr>
                                 <th class="border-top-0">No</th>
                                 <th class="border-top-0">Kategori Produk</th>
+                                <th class="border-top-0">Deskripsi</th>
                                 <th class="border-top-0">Action</th>
                             </tr>
                         </thead>
@@ -37,13 +38,15 @@
                             <tr>
                                 <th class="border-top-0">No</th>
                                 <th class="border-top-0">Kategori Produk</th>
+                                <th class="border-top-0">Deskripsi</th>
                                 <th class="border-top-0">Action</th>
                         </tfoot>
                         <tbody>
                             @foreach($contents as $item)
                             <tr>
-                                <th scope="row">{{ $loop->iteration}}</th>
+                                <th scope="row">{{ $loop->index + 1 + ($contents->currentPage() - 1) * 5}}</th>
                                 <td>{{ $item->category_name }}</td>
+                                <td>{{ $item->description }}</td>
                                 <td>
                                     <form action="{{ route('kategori.delete', $item->id) }}" method="POST">
                                         <div class="" role="group" aria-label="Basic example">
@@ -61,4 +64,7 @@
                 </div>
             </div>
         </div>
+<div class="pagination d-flex justify-content-center">
+    {{ $contents->onEachSide(1)->links() }}
+</div>
 @endsection
