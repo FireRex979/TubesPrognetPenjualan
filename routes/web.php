@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,20 +32,22 @@ Route::group(['middleware' => 'auth'], function() {
         /* ---- DASHBOARD ---- */
 
         /* ---- PRODUK ---- */
-        Route::get('/produk-list', 'ProductController@produk_list')->name('produk-list');
-        Route::get('/produk-block', 'ProductController@produk_block')->name('produk-block');
-        Route::get('/produk-tambah', 'ProductController@produk_tambah')->name('produk-tambah');
-        Route::post('/produk-savetambah', 'ProductController@produk_savetambah')->name('produk-savetambah');
-        Route::get('/{id}/produk-edit', 'ProductController@produk_edit')->name('produk-edit');
-        Route::post('/{id}/produk-saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
-        Route::post('/{id}/produk-delete', 'ProductController@produk_delete')->name('produk-delete');
+        Route::get('/produk/list', 'ProductController@produk_list')->name('produk-list');
+        Route::get('/produk/block', 'ProductController@produk_block')->name('produk-block');
+        Route::get('/produk/tambah', 'ProductController@produk_tambah')->name('produk-tambah');
+        Route::post('/produk/savetambah', 'ProductController@produk_savetambah')->name('produk-savetambah');
+        Route::get('/{id}/produk/edit', 'ProductController@produk_edit')->name('produk-edit');
+        Route::post('/{id}/produk/saveedit', 'ProductController@produk_saveedit')->name('produk-saveedit');
+        Route::post('/{id}/produk/delete', 'ProductController@produk_delete')->name('produk-delete');
 
-        Route::get('/produk-sampah', 'ProductController@produk_sampah')->name('produk-sampah');
-        Route::get('/{id}/produk-restore', 'ProductController@produk_restore')->name('produk-restore');
-        Route::post('/{id}/produk-forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
+        Route::get('/produk/sampah', 'ProductController@produk_sampah')->name('produk-sampah');
+        Route::get('/{id}/produk/restore', 'ProductController@produk_restore')->name('produk-restore');
+        Route::post('/{id}/produk/forcedelete', 'ProductController@produk_forcedelete')->name('produk-forcedelete');
 
-        Route::get('/produk-restoreall', 'ProductController@produk_restoreall')->name('produk-restoreall');
-        Route::post('/produk-forcedeleteall', 'ProductController@produk_forcedeleteall')->name('produk-forcedeleteall');
+        Route::get('/produk/restoreall', 'ProductController@produk_restoreall')->name('produk-restoreall');
+        Route::post('/produk/forcedeleteall', 'ProductController@produk_forcedeleteall')->name('produk-forcedeleteall');
+
+        Route::post('/produk/delete/checked', [ProductController::class, 'deleteChecked'])->name('produk-delete-checked');
 
     });
 

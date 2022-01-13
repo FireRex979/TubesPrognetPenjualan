@@ -16,10 +16,10 @@
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="/foto/{{ $produk->foto }}" class="square" width="300">
+                <center class="mt-2"> <img src="/{{ $produk->foto }}" class="square" width="300">
                     <div class="btn btn-light btn-icon-split mt-3">
                         <span class="icon text-gray-600">
-                            <i class="fas fa-arrow-right">
+                            <i class="">
                                 <input id="foto" name="foto" type="file" class="form-control">
                             </i>
                         </span>
@@ -136,6 +136,21 @@
                                 </select>
                             </div>
                             @error('satuan')
+                                <div class="alert alert-danger" role="alert">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="col-md-12 mb-0">Harga Beli</label>
+                            <div class="col-md-12 input-group-prepend">
+                                <span class="input-group-text">Rp.</span>
+                                    <input type="text" value="{{ $produk->harga_beli }}" placeholder=""
+                                        class="form-control" name="beli"
+                                        id="beli">
+                                <span class="input-group-text">,00</span>
+                            </div>
+                            @error('beli')
                                 <div class="alert alert-danger" role="alert">
                                     {{$message}}
                                 </div>

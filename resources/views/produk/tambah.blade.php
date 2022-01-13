@@ -16,10 +16,10 @@
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="../img/1234.jpg" class="square" width="300" />
+                <center class="mt-2"> <img src="../foto/placeholder-image.png" class="square" width="300" />
                     <div class="btn btn-light btn-icon-split mt-3">
                         <span class="icon text-gray-600">
-                            <i class="fas fa-arrow-right">
+                            <i class="">
                                 <input id="foto" name="foto" type="file" class="form-control">
                             </i>
                         </span>
