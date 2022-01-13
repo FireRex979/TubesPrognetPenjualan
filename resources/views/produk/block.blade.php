@@ -12,14 +12,15 @@
         <h6 class="m-0 font-weight-bold text-primary d-flex">List Produk</h6>
             @include('layouts/navbar_atas')
     </div>
+<section id="slider">
 <div class="row">
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="{{ asset($item->foto) }}" class="square" width="300">
+                <center class="mt-2"> <img src="/{{ $item->foto }}" class="square" width="300">
                 </center>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="pagination d-flex justify-content-center">
                 {{ $produk->onEachSide(1)->links() }}
             </div>
         </div>
@@ -96,5 +97,6 @@
         </div>
     </div>
 </div>
+</section>
 @endforeach
 @endsection

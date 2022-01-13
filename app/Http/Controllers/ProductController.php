@@ -16,9 +16,11 @@ class ProductController extends Controller
         return view('penjualan.dashboard');
     }
 
-    public function produk_list(){
+    public function produk_list(Request $request){
 
-        $produk = Product::paginate(10);
+        $produk = Product::all();
+        // $produk = Product::all()->toJson();
+        // return response()->json($produk);
         return view('produk.list', compact('produk'));
     }
 
@@ -38,7 +40,13 @@ class ProductController extends Controller
 
     public function produk_savetambah(Request $request){
 
-        $request->validate([
+        if($request->beli > $request->jual){
+            $request->validate([
+                'beli' => 'lt:jual',
+            ]);
+        }
+        else{
+            $request->validate([
             'satuan' => 'required',
             'supplier' => 'required',
             'kategori' => 'required',
@@ -48,8 +56,9 @@ class ProductController extends Controller
             'beli' => 'required',
             'jual' => 'required',
             'foto' => 'required',
-        ]);
-
+            ]);
+        }
+    
         if($request->file('foto')){
             $gambar = $request->file('foto');
             $destinationPath = 'foto';
@@ -99,6 +108,10 @@ class ProductController extends Controller
 
     public function produk_saveedit(Request $request, $id){
 
+        $request->validate([
+            'beli' => 'lt:jual',
+        ]);
+
         $produk = Product::find($id);
 
         $produk->satuan_id = $request->satuan;
@@ -122,7 +135,7 @@ class ProductController extends Controller
         $produk->harga_jual = $request->jual;
         $produk->save();
 
-        return redirect()->route('produk-list');
+        return Redirect::back();
     }
 
     public function produk_delete($id){
@@ -161,6 +174,12 @@ class ProductController extends Controller
         return Redirect::back();
     }
 
+<<<<<<< HEAD
+    public function deleteChecked(Request $request)
+    {
+        Product::whereIn('id', [$request->ids])->delete();
+        return response()->json(true);
+=======
     public function getAllData(Request $request)
     {
         $produk = Product::query();
@@ -179,5 +198,6 @@ class ProductController extends Controller
             'message' => 'success',
             'data' => $produk
         ]);
+>>>>>>> 03f980cb42847e8ce14bb1ad5866b8b7c1ef38d2
     }
 }
