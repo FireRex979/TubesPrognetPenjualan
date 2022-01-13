@@ -25,18 +25,31 @@
                     <label for="example-email" class="col-md-12">Kategori Produk</label>
                     <div class="col-md-12">
                         <input type="text" placeholder="Eg. Baju, Celana" value="{{ $content->category_name }}" class="form-control ps-0 form-control-line" name="category_name"
-                            id="category_name">
+                            id="category_name" required>
                     </div>
                     @error('category_name')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="example-email" class="col-md-12">Deskripsi</label>
+                    <div class="col-md-12">
+                        <input type="text" placeholder="Eg. Pakaian adalah..." value="{{ $content->description }}" class="form-control ps-0 form-control-line" name="description"
+                            id="description" required>
+                    </div>
+                    @error('description')
                         <div class="alert alert-danger" role="alert">
                             {{$message}}
                         </div>
                     @enderror
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Simpan
-                            Penambahan</button>
+                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Simpan Perubahan</button>
                         <a href="{{ route('kategori.index') }}" class="btn btn-info mx-auto mx-md-0 text-white">Kembali</a>
                     </div>
                 </div>

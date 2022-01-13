@@ -4,29 +4,24 @@
 
 @section('content')
 <div class="row">
+    <div class="col-12 mb-5">
+        <div class="input-group w-50">
+            <input type="text" id="search-produk" class="form-control bg-white border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="searchProduk()" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="col-md-8 col-12 mb-3">
-        <div class="row">
-            @foreach ($product as $item)
-                <div class="col-md-4 col-12 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/{{ $item->foto }}" style="border-radius: 10px;" width="100%" alt="">
-                            <hr>
-                            <div id="product-{{ $item->id }}" class="d-flex justify-content-between align-items-center container-product-{{ $item->id }}">
-                                <div class="right-content">
-                                    <p class="m-0 product-name">{{ $item->nama_barang }}</p>
-                                    <p class="m-0 product-price-p">Rp. <span class="product-price">{{ $item->harga_jual }}</span></p>
-                                </div>
-                                <div class="left-content">
-                                    <button class="btn btn-success btn-sm text-white" type="button" data-id="{{ $item->id }}" data-stok="{{ $item->stok }}" onclick="addCart(this)">
-                                        <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div class="row" id="produk-container">
+
+        </div>
+        <div class="w-100 text-center">
+            <input type="hidden" id="last-id-produk" value="0">
+            <button class="btn btn-primary" onclick="getDataProduk()" type="button">Load More</button>
         </div>
     </div>
     <div class="col-md-4 col-12 mb-3">
@@ -82,11 +77,74 @@
 @endsection
 @section('js')
     <script>
+        $(document).ready(function() {
+            getDataProduk();
+        });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        generateProdukTemplate = (data) => {
+            let string = '<div class="col-md-4 col-12 mb-3">'+
+                '<div class="card">'+
+                    '<div class="card-body">'+
+                        '<img src="/'+data.foto+'" style="border-radius: 10px;" width="100%" alt="">'+
+                        '<hr>'+
+                        '<div id="product-'+data.id+'" class="d-flex justify-content-between align-items-center container-product-'+data.id+'">'+
+                            '<div class="right-content">'+
+                                '<p class="m-0 product-name">'+data.nama_barang+'</p>'+
+                                '<p class="m-0 product-price-p">Rp. <span class="product-price">'+data.harga_jual+'</span></p>'+
+                            '</div>'+
+                            '<div class="left-content">'+
+                                '<button class="btn btn-success btn-sm text-white" type="button" data-id="'+data.id+'" data-stok="'+data.stok+'" onclick="addCart(this)">'+
+                                    '<i class="fas fa-cart-plus"></i>'+
+                                '</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+            return string;
+        }
+
+        searchProduk = () => {
+            $.ajax({
+                url: '{{ route("product.get-all-data") }}',
+                method: 'GET',
+                data: {
+                    keyword: $('#search-produk').val(),
+                },
+                success: function (response) {
+                    $('#produk-container').empty();
+                    $(response.data).each(function (i, item) {
+                        let template = generateProdukTemplate(item);
+                        $('#produk-container').append(template);
+                        $('#last-id-produk').val(item.id);
+                    });
+                }
+            })
+        }
+
+        getDataProduk = () => {
+            $.ajax({
+                url: '{{ route("product.get-all-data") }}',
+                method: 'GET',
+                data: {
+                    keyword: $('#search-produk').val(),
+                    last_id: $('#last-id-produk').val(),
+                },
+                success: function (response) {
+                    $(response.data).each(function (i, item) {
+                        let template = generateProdukTemplate(item);
+                        $('#produk-container').append(template);
+                        $('#last-id-produk').val(item.id);
+                    });
+                }
+            })
+        }
 
         addCart = (button) => {
             if(parseInt($(button).data('stok')) > 0) {

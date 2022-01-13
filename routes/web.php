@@ -20,8 +20,54 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/', function () {
-        return view('penjualan/dashboard');
+    Route::group(['middleware' => ['check.role:admin']], function() {
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/get-data-penjualan', 'HomeController@getDataPenjualan')->name('get-data-penjualan');
+        Route::get('/get-data-kategori-penjualan', 'HomeController@getDataPenjualanKategori')->name('get-data-kategori-penjualan');
+        Route::get('/', function () {
+            return view('home');
+        });
+
+        Route::get('/welcome', function () {
+            return view('welcome');
+        });
+
+        //Satuan
+        Route::group(['prefix' => 'satuan'], function() {
+            Route::get('/', [SatuanController::class, 'index'])->name('satuan.index');
+
+            Route::get('/add', [SatuanController::class, 'add'])->name('satuan.add');
+            Route::post('/add', [SatuanController::class, 'addSave'])->name('satuan.add.save');
+
+            Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuan.edit');
+            Route::post('/edit/{id}',[SatuanController::class, 'editSave'])->name('satuan.edit.save');
+
+            Route::post('/delete/{id}',[SatuanController::class, 'delete'])->name('satuan.delete');
+        });
+
+        //user
+        Route::group(['prefix' => 'user'], function() {
+            Route::get('/', [UserController::class, 'index'])->name('user.index');
+
+            Route::get('/add', [UserController::class, 'add'])->name('user.add');
+            Route::post('/add', [UserController::class, 'addSave'])->name('user.add.save');
+
+            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+            Route::post('/edit/{id}',[UserController::class, 'editSave'])->name('user.edit.save');
+
+            Route::post('/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
+        });
+
+        //Kategori
+        Route::group(['prefix' => 'kategori'], function() {
+            Route::get('/', [KategoriProdukController::class, 'index'])->name('kategori.index');
+            Route::get('/add', [KategoriProdukController::class, 'add'])->name('kategori.add');
+            Route::post('/add', [KategoriProdukController::class, 'addSave'])->name('kategori.add.save');
+            Route::get('/edit/{id}', [KategoriProdukController::class, 'edit'])->name('kategori.edit');
+            Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
+            Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
+        });
+
     });
 
     Route::get('/welcome', function () {
@@ -48,55 +94,21 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/produk/forcedeleteall', 'ProductController@produk_forcedeleteall')->name('produk-forcedeleteall');
 
         Route::post('/produk/delete/checked', [ProductController::class, 'deleteChecked'])->name('produk-delete-checked');
+        
+        
+        Route::group(['middleware' => ['check.role:kasir']], function() {
+        //Penjualan
+        Route::group(['prefix' => 'penjualan'], function() {
+            Route::get('/', 'PenjualanController@index')->name('penjualan.index');
+            Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
+        });
 
-    });
-
-    //Penjualan
-    Route::group(['prefix' => 'penjualan'], function() {
-        Route::get('/', 'PenjualanController@index')->name('penjualan.index');
-        Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
-        Route::get('/','PenjualanController@index')->name('penjualan.index');
-    });
-
-    //Satuan
-    Route::group(['prefix' => 'satuan'], function() {
-        Route::get('/', [SatuanController::class, 'index'])->name('satuan.index');
-
-        Route::get('/add', [SatuanController::class, 'add'])->name('satuan.add');
-        Route::post('/add', [SatuanController::class, 'addSave'])->name('satuan.add.save');
-
-        Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuan.edit');
-        Route::post('/edit/{id}',[SatuanController::class, 'editSave'])->name('satuan.edit.save');
-
-        Route::post('/delete/{id}',[SatuanController::class, 'delete'])->name('satuan.delete');
-    });
-
-    //user
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('/', [UserController::class, 'index'])->name('user.index');
-
-        Route::get('/add', [UserController::class, 'add'])->name('user.add');
-        Route::post('/add', [UserController::class, 'addSave'])->name('user.add.save');
-
-        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-        Route::post('/edit/{id}',[UserController::class, 'editSave'])->name('user.edit.save');
-
-        Route::post('/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
-    });
-
-    //Kategori
-    Route::group(['prefix' => 'kategori'], function() {
-        Route::get('/', [KategoriProdukController::class, 'index'])->name('kategori.index');
-        Route::get('/add', [KategoriProdukController::class, 'add'])->name('kategori.add');
-        Route::post('/add', [KategoriProdukController::class, 'addSave'])->name('kategori.add.save');
-        Route::get('/edit/{id}', [KategoriProdukController::class, 'edit'])->name('kategori.edit');
-        Route::post('/edit/{id}',[KategoriProdukController::class, 'editSave'])->name('kategori.edit.save');
-        Route::post('/delete/{id}',[KategoriProdukController::class, 'delete'])->name('kategori.delete');
+        Route::group(['prefix' => 'product'], function() {
+            Route::get('/get-all-data', 'ProductController@getAllData')->name('product.get-all-data');
+        });
     });
 });
 
-Auth::routes();
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/get-data-penjualan', 'HomeController@getDataPenjualan')->name('get-data-penjualan');
-Route::get('/get-data-kategori-penjualan', 'HomeController@getDataPenjualanKategori')->name('get-data-kategori-penjualan');
+Auth::routes(['register' => false]);
