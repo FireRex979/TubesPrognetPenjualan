@@ -87,13 +87,13 @@ class ProductController extends Controller
         $supplier = Supplier::where('id', '=', $produk->supplier_id)->first();
         $kategori = CategoryProduct::where('id', '=', $produk->category_id)->first();
         $satuan = Satuan::where('id', '=', $produk->satuan_id)->first();
-        
+
         return view('produk.edit', compact('produk', 'supplier', 'kategori', 'satuan'));
     }
 
     public function produk_edit($id){
         $produk = Product::find($id);
-        
+
         $supplier_selected = Supplier::where('id', '=', $produk->supplier_id)->first();
         $supplier = Supplier::all();
 
@@ -117,7 +117,7 @@ class ProductController extends Controller
         $produk->satuan_id = $request->satuan;
         $produk->supplier_id = $request->supplier;
         $produk->category_id = $request->kategori;
-        
+
         $path = $produk->foto;
         if ($request->hasFile('foto')) {
             $gambar = $request->file('foto');
@@ -126,8 +126,8 @@ class ProductController extends Controller
             $gambar->move($destinationPath, $filename);
             $path = $filename;
         }
-    
-        $produk->foto = $path;        
+
+        $produk->foto = $path;
         $produk->kode = $request->kode;
         $produk->nama_barang = $request->nama;
         $produk->stok = $request->stok;
@@ -174,9 +174,30 @@ class ProductController extends Controller
         return Redirect::back();
     }
 
+<<<<<<< HEAD
     public function deleteChecked(Request $request)
     {
         Product::whereIn('id', [$request->ids])->delete();
         return response()->json(true);
+=======
+    public function getAllData(Request $request)
+    {
+        $produk = Product::query();
+        if (isset($request->keyword)) {
+            $produk->where('nama_barang', 'LIKE', '%'.$request->keyword.'%');
+        }
+        if (isset($request->last_id)) {
+            $produk->where('id', '>', $request->last_id);
+        }
+        $produk = $produk->where('stok', '>', 0)
+            ->orderby('id', 'asc')
+            ->limit(6)
+            ->get();
+        return response()->json([
+            'code' => 200,
+            'message' => 'success',
+            'data' => $produk
+        ]);
+>>>>>>> 03f980cb42847e8ce14bb1ad5866b8b7c1ef38d2
     }
 }
