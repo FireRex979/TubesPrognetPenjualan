@@ -41,7 +41,6 @@ class KategoriProdukController extends Controller
             'description'=>$request->description,
         ]);
         return redirect()->route('kategori.index')->with('success', 'Berhasil Mengubah Data Kategori Produk');
-
     }
 
     public function delete($id){
@@ -50,5 +49,11 @@ class KategoriProdukController extends Controller
         // // dd($data);
         $data->delete();
         return redirect()->route('kategori.index')->with('success', 'Berhasil Menghapus Data Kategori Produk');
+    }
+
+    public function search(Request $request){
+        $keyword = $_GET['search'];
+        $contents = CategoryProduct::where('category_name', 'like', '%' . request('search') . '%')->get();
+        return view('kategori.search', compact('contents'));
     }
 }
