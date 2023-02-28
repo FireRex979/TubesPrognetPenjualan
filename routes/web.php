@@ -7,6 +7,7 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\ProductController;
+use App\Models\Penjualan;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::group(['prefix' => 'penjualan'], function() {
             Route::get('/', 'PenjualanController@index')->name('penjualan.index');
             Route::post('/store', 'PenjualanController@store')->name('penjualan.store');
+            Route::get('/array', 'PenjualanController@array')->name('penjualan.array');
         });
 
         Route::group(['prefix' => 'product'], function() {
@@ -112,3 +114,9 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Auth::routes(['register' => false]);
+
+// Route::get('/array', 'PenjualanController@array')
+Route::get('/array', function() {
+    $array = Penjualan::all(['tgl_transaksi', 'total_pembelian']);
+    return $array;
+});

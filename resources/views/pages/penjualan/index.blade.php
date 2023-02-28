@@ -97,6 +97,7 @@
                             '<div class="right-content">'+
                                 '<p class="m-0 product-name">'+data.nama_barang+'</p>'+
                                 '<p class="m-0 product-price-p">Rp. <span class="product-price">'+data.harga_jual+'</span></p>'+
+                                '<p class="m-0 product-stok"">Stok: <span class="product-stok">'+data.stok+'</span></p>'+
                             '</div>'+
                             '<div class="left-content">'+
                                 '<button class="btn btn-success btn-sm text-white" type="button" data-id="'+data.id+'" data-stok="'+data.stok+'" onclick="addCart(this)">'+

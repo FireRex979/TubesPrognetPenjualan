@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function produk_list(Request $request){
 
-        $produk = Product::all();
+        $produk = Product::orderBy('id', 'DESC')->get();
         // $produk = Product::all()->toJson();
         // return response()->json($produk);
         return view('produk.list', compact('produk'));
@@ -174,12 +174,12 @@ class ProductController extends Controller
         return Redirect::back();
     }
 
-<<<<<<< HEAD
     public function deleteChecked(Request $request)
     {
         Product::whereIn('id', [$request->ids])->delete();
         return response()->json(true);
-=======
+    }
+
     public function getAllData(Request $request)
     {
         $produk = Product::query();
@@ -198,6 +198,5 @@ class ProductController extends Controller
             'message' => 'success',
             'data' => $produk
         ]);
->>>>>>> 03f980cb42847e8ce14bb1ad5866b8b7c1ef38d2
     }
 }

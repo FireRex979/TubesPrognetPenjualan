@@ -59,4 +59,12 @@ class PenjualanController extends Controller
 
         return response()->json(['success' => true, 'data_penjualan' => $penjualan->penjualan_detail]);
     }
+
+    public function array(){
+        // $penjualan = Penjualan::all(['tgl_transaksi', 'total_pembelian'])
+        //     ->whereDay('tgl_transaksi', '=', date('12', '13'));            
+        $penjualan = Penjualan::all(['tgl_transaksi', 'total_pembelian'])
+            ->where('tgl_transaksi', '=', 2022-01-13);
+        return $penjualan;
+    }
 }

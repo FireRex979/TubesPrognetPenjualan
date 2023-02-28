@@ -16,7 +16,7 @@
     <div class="col-lg-4 col-3">
         <div class="card">
             <div class="card-body profile-card">
-                <center class="mt-2"> <img src="../foto/placeholder-image.png" class="square" width="300" />
+                <center class="mt-2"> <img src="../foto/placeholder-img.png" class="square" width="300" />
                     <div class="btn btn-light btn-icon-split mt-3">
                         <span class="icon text-gray-600">
                             <i class="">
@@ -45,12 +45,10 @@
                         <div class="form-group">
                             <label class="col-md-12 mb-0">Supplier</label>
                             <div class="col-md-12">
-                                <select name="supplier" class="form-select shadow-none border-0 ps-0">
                                     @foreach($supplier as $item)
                                     <option value="{{ $item->id }}" class="form-check-input" id=""
                                         name="supplier">{{ $item->nama_supplier }}</option>
                                     @endforeach
-                                </select>
                             </div>
                             @error('supplier')
                                 <div class="alert alert-danger" role="alert">
@@ -156,7 +154,6 @@
                             @error('jual')
                                 <div class="alert alert-danger" role="alert">
                                     {{$message}}
-                                </div>
                             @enderror
                         </div>
                         <div class="form-group">
